@@ -1,38 +1,124 @@
-.App {
-  text-align: center;
+:root {
+  --dark-text: hsl(229, 25%, 31%);
+  --color-bg: hsl(214, 47%, 23%);
+  --color-to-bg: hsl(237, 49%, 15%);
+  --score-text-color: hsl(229, 64%, 46%);
+  --header-outline: hsl(217, 16%, 45%);
+  --paper-btn-bg: hsl(230, 89%, 62%);
+  --paper-btn-bg-to: hsl(230, 89%, 65%);
+  --scissors-btn-bg:  hsl(39, 89%, 49%);
+  --scissors-btn-bg-to:  hsl(40, 84%, 53%);
+  --rock-btn-bg: hsl(349, 71%, 52%);
+  --rock-btn-bg-to: hsl(349, 70%, 56%);
+  --shadow-light: #00000026;
+  --shadow-med: #0000004d;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-image: radial-gradient(farthest-corner at 50% 0%,var(--color-bg),var(--color-to-bg));
+  font-family: 'Barlow Semi Condensed', sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  width: 100%;
+  height: 100vh;
   display: flex;
+  align-items: center;
   flex-direction: column;
+}
+
+.container header {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 22px;
+  margin-top: 22px;
+  border: solid 3px var(--header-outline);
+  border-radius: 14px;
+}
+
+.container header p{
+  color: var(--score-text-color);
+  letter-spacing: 3px;
+}
+
+.container .score {
+  width: 120px;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: column;
 }
 
-.App-link {
-  color: #61dafb;
+.container .score span {
+  font-size: 42px;
+  color: var(--dark-text);
+  font-weight: 700;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container .play {
+  width: 400px;
+  height: 400px;
+  margin-top: 64px;
+  background-image: url('../public/bg-triangle.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container .choice-btn{
+  border: none;
+  background: none;
+  outline: none;
+  width: 176px;
+  height: 176px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.container .choice-btn:focus {
+  opacity: 1;
+  box-shadow: 0 0 0 2rem #223351;
+}
+
+.container .choice {
+  width: 136px;
+  height: 136px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 6px var(--shadow-light);
+}
+
+.choice-btn[data-choice="paper"] {
+  background: linear-gradient(to bottom, var(--paper-btn-bg), var(--paper-btn-bg-to));
+  box-shadow: 0 0.5rem var(--shadow-med), 0 6px var(--paper-btn-bg-to);
+  margin-right: auto;
+}
+.choice-btn[data-choice="scissors"] {
+  background: linear-gradient(to bottom, var(--scissors-btn-bg), var(--scissors-btn-bg-to));
+  box-shadow: 0 0.5rem var(--shadow-med), 0 6px var(--scissors-btn-bg-to);
+}
+.choice-btn[data-choice="rock"] {
+  background: linear-gradient(to bottom, var(--rock-btn-bg), var(--rock-btn-bg-to));
+  box-shadow: 0 0.5rem var(--shadow-med), 0 6px var(--rock-btn-bg-to);
 }
