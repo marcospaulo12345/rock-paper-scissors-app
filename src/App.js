@@ -1,6 +1,12 @@
+import {useState} from 'react';
 import './App.css';
 
+import ChoiceBtn from './components/ChoiceBtn/index';
+
 function App() {
+
+  const [choice, setChoice] = useState(false);
+
   return (
     <div className="container">
       <header>
@@ -12,36 +18,35 @@ function App() {
         </div>
       </header>
 
-      <main className="play">
+      <main >
+        {choice && (
+        <section className="play">
+          <ChoiceBtn choice="paper" typeBtn='1' />
+          <ChoiceBtn choice="scissors" typeBtn='1'/>
+          <ChoiceBtn choice="rock" typeBtn='1'/>
+        </section>
 
-        <button className="choice-btn" data-choice="paper">
-          <div className="choice paper">
-            <img src='./icon-paper.svg' alt='icon-paper'></img>
-          </div>
-        </button>
+        )}
 
-        <button className="choice-btn" data-choice="scissors">
-          <div className="choice scissors">
-            <img src='./icon-scissors.svg' alt='icon-scissors'></img>
+        <section className="results">
+          <div className='picked'>
+            <h1>YOU PICKED</h1>
+            <ChoiceBtn choice="scissors" typeBtn='2' />
           </div>
-        </button>
 
-        <button className="choice-btn" data-choice="rock">
-          <div className="choice rock">
-            <img src='./icon-rock.svg' alt='icon-rock'></img>
+          { true && (<div className='result'>
+            <h1>YOU LOSE</h1>
+            <button>PLAY AGAIN</button>
+          </div>)}
+
+          <div className='picked'>
+            <h1>THE HOUSE PICKED</h1>
+            <ChoiceBtn choice="rock" typeBtn='2' />
           </div>
-        </button>
+        </section>
       </main>
 
-      Rules
-
-      You Picked
-      The House Picked
-
-      You Win
-      You Lose
-
-      Play Again
+      <button>Rules</button>
     </div>
   );
 }
