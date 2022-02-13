@@ -1,11 +1,79 @@
-import {useState} from 'react';
+import {useState, useRef, useEffect} from 'react';
 import './App.css';
 
 import ChoiceBtn from './components/ChoiceBtn/index';
+import Modal from './components/Modal/index';
 
 function App() {
 
-  const [choice, setChoice] = useState(false);
+  const [choice, setChoice] = useState('');
+  const [choiceCPU, setChoiceCPU] = useState('');
+  const [showResult, setShowResult] = useState(false);
+  const [result, setResult] = useState('YOU LOSE');
+  const [num, setNum] = useState(3);
+  const [showModal, setShowModal] = useState(true);
+
+  let intervalRef = useRef()
+
+  const decreaseNum = () => setNum((prev) => {
+    if(prev != 0){
+      return prev - 1
+    }else{
+      clearInterval(intervalRef.current);
+    }
+  });
+
+  function handleChoice(choice) {
+    setChoice(choice);
+
+    intervalRef.current = setInterval(decreaseNum, 1000);
+  }
+
+  function playAgain() {
+    setChoice('');
+    setShowResult(false);
+    setNum(3);
+  }
+
+  function play() {
+    let choiceCPU = ['paper', 'scissors', 'rock'];
+
+    let random = Math.floor(Math.random() * 3);
+    setChoiceCPU(choiceCPU[random]);
+
+
+    if(choice === 'paper' && choiceCPU[random] == 'rock') {
+      setResult('YOU WIN');
+    } 
+    if(choice === 'rock' && choiceCPU[random] == 'scissors') {
+      setResult('YOU WIN');
+    } 
+    if(choice === 'scissors' && choiceCPU[random] == 'paper') {
+      setResult('YOU WIN');
+    } 
+
+    if(choice === 'rock' && choiceCPU[random] == 'paper') {
+      setResult('YOU LOSE');
+    } 
+    if(choice === 'scissors' && choiceCPU[random] == 'rock') {
+      setResult('YOU LOSE');
+    } 
+    if(choice === 'paper' && choiceCPU[random] == 'scissors') {
+      setResult('YOU LOSE');
+    } 
+    
+    if(choice === choiceCPU[random]){
+      setResult("It's a tie!");
+    }
+
+  }
+
+  useEffect(() => {
+    if(num === 0){
+      setShowResult(true);
+      play();
+    }
+  }, [num]);
 
   return (
     <div className="container">
@@ -19,34 +87,43 @@ function App() {
       </header>
 
       <main >
-        {choice && (
-        <section className="play">
-          <ChoiceBtn choice="paper" typeBtn='1' />
-          <ChoiceBtn choice="scissors" typeBtn='1'/>
-          <ChoiceBtn choice="rock" typeBtn='1'/>
-        </section>
+        {choice === '' ? (
+          <section className="play">
+            <ChoiceBtn choice="paper" typeBtn='1' handleChoice={handleChoice} />
+            <ChoiceBtn choice="scissors" typeBtn='1' handleChoice={handleChoice}/>
+            <ChoiceBtn choice="rock" typeBtn='1' handleChoice={handleChoice}/>
+          </section>
+        ) : (
+          <section className="results">
+            <div className='picked'>
+              <h1>YOU PICKED</h1>
+              <ChoiceBtn choice={choice} typeBtn='2' />
+            </div>
 
+            { showResult && (<div className='result'>
+              <h1>{result}</h1>
+              <button onClick={() => playAgain()}>PLAY AGAIN</button>
+            </div>)}
+
+            <div className='picked'>
+              <h1>THE HOUSE PICKED</h1>
+              {num > 0 ? (
+                <div className='count-down'>
+                  <span>{num}</span>
+                </div>
+              ) : (
+                <ChoiceBtn choice={choiceCPU} typeBtn='2' />
+              )}
+            </div>
+          </section>
         )}
 
-        <section className="results">
-          <div className='picked'>
-            <h1>YOU PICKED</h1>
-            <ChoiceBtn choice="scissors" typeBtn='2' />
-          </div>
-
-          { true && (<div className='result'>
-            <h1>YOU LOSE</h1>
-            <button>PLAY AGAIN</button>
-          </div>)}
-
-          <div className='picked'>
-            <h1>THE HOUSE PICKED</h1>
-            <ChoiceBtn choice="rock" typeBtn='2' />
-          </div>
-        </section>
       </main>
 
-      <button>Rules</button>
+      <button className='btn-rules' onClick={() => setShowModal(true)}>RULES</button>
+      {showModal && (
+        <Modal open={() => setShowModal(false)} />
+      )}
     </div>
   );
 }

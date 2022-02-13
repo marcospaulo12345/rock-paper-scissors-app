@@ -133,3 +133,31 @@ body {
   letter-spacing: 1px;
 }
 
+.btn-rules {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  border: solid 1px #fff;
+  border-radius: 6px;
+  padding: 8px 22px;
+  color: #fff;
+  font-weight: 700;
+  font-family: 'Barlow Semi Condensed', sans-serif; 
+  letter-spacing: 3px;
+}
+
+.count-down {
+  width: 186px;
+  height: 186px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 27px;
+}
+
+.count-down span {
+  font-size: 42px;
+  color: var(--dark-text) !important;
+}
