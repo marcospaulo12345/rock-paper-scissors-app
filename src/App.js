@@ -11,7 +11,8 @@ function App() {
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState('YOU LOSE');
   const [num, setNum] = useState(3);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [score, setScore] = useState(0);
 
   let intervalRef = useRef()
 
@@ -44,22 +45,28 @@ function App() {
 
     if(choice === 'paper' && choiceCPU[random] == 'rock') {
       setResult('YOU WIN');
+      setScore(score + 1);
     } 
     if(choice === 'rock' && choiceCPU[random] == 'scissors') {
       setResult('YOU WIN');
+      setScore(score + 1);
     } 
     if(choice === 'scissors' && choiceCPU[random] == 'paper') {
       setResult('YOU WIN');
+      setScore(score + 1);
     } 
 
     if(choice === 'rock' && choiceCPU[random] == 'paper') {
       setResult('YOU LOSE');
+      setScore(score - 1);
     } 
     if(choice === 'scissors' && choiceCPU[random] == 'rock') {
       setResult('YOU LOSE');
+      setScore(score - 1);
     } 
     if(choice === 'paper' && choiceCPU[random] == 'scissors') {
       setResult('YOU LOSE');
+      setScore(score - 1);
     } 
     
     if(choice === choiceCPU[random]){
@@ -82,7 +89,7 @@ function App() {
 
         <div className="score">
           <p>SCORE</p>
-          <span>12</span>
+          <span>{score}</span>
         </div>
       </header>
 
@@ -94,28 +101,7 @@ function App() {
             <ChoiceBtn choice="rock" typeBtn='1' handleChoice={handleChoice}/>
           </section>
         ) : (
-          <section className="results">
-            <div className='picked'>
-              <h1>YOU PICKED</h1>
-              <ChoiceBtn choice={choice} typeBtn='2' />
-            </div>
-
-            { showResult && (<div className='result'>
-              <h1>{result}</h1>
-              <button onClick={() => playAgain()}>PLAY AGAIN</button>
-            </div>)}
-
-            <div className='picked'>
-              <h1>THE HOUSE PICKED</h1>
-              {num > 0 ? (
-                <div className='count-down'>
-                  <span>{num}</span>
-                </div>
-              ) : (
-                <ChoiceBtn choice={choiceCPU} typeBtn='2' />
-              )}
-            </div>
-          </section>
+          null
         )}
 
       </main>

@@ -29,6 +29,8 @@ button {
 .result-btn {
     width: 240px;
     height: 240px;
+    /*box-shadow: 0 0 0 40px #293251, 0 0 0 80px #232c4b, 0 0 0 130px #1e2949 !important;
+    z-index: -1;*/
 }
 
 .result-btn div {
@@ -66,4 +68,15 @@ button[data-choice="scissors"] {
 button[data-choice="rock"] {
     background: linear-gradient(to bottom, var(--rock-btn-bg), var(--rock-btn-bg-to));
     box-shadow: 0 0.5rem var(--shadow-med), 0 6px var(--rock-btn-bg-to);
+}
+
+@media (max-width: 375px) {
+    .choice-btn{
+        width: 126px;
+        height: 126px;
+    }
+    .choice {
+        width: 96px;
+        height: 96px;
+    }
 }
