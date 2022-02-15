@@ -21,11 +21,43 @@
     margin-bottom: 44px;
 }
 
+.modal-header h1{
+    color: var(--dark-text);
+}
+
 @keyframes slideY{
     from {
         transform: translateY(100px);
     }
     to {
         transform: translateY(0px);
+    }
+}
+
+@media (max-width: 375px) {
+    .modal {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .modal-header {
+        justify-content: center;
+    }
+
+    .modal-body {
+        margin-top: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-header button {
+        position: absolute;
+        bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
     }
 }

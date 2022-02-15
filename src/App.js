@@ -43,28 +43,28 @@ function App() {
     setChoiceCPU(choiceCPU[random]);
 
 
-    if(choice === 'paper' && choiceCPU[random] == 'rock') {
+    if(choice === 'paper' && choiceCPU[random] === 'rock') {
       setResult('YOU WIN');
       setScore(score + 1);
     } 
-    if(choice === 'rock' && choiceCPU[random] == 'scissors') {
+    if(choice === 'rock' && choiceCPU[random] === 'scissors') {
       setResult('YOU WIN');
       setScore(score + 1);
     } 
-    if(choice === 'scissors' && choiceCPU[random] == 'paper') {
+    if(choice === 'scissors' && choiceCPU[random] === 'paper') {
       setResult('YOU WIN');
       setScore(score + 1);
     } 
 
-    if(choice === 'rock' && choiceCPU[random] == 'paper') {
+    if(choice === 'rock' && choiceCPU[random] === 'paper') {
       setResult('YOU LOSE');
       setScore(score - 1);
     } 
-    if(choice === 'scissors' && choiceCPU[random] == 'rock') {
+    if(choice === 'scissors' && choiceCPU[random] === 'rock') {
       setResult('YOU LOSE');
       setScore(score - 1);
     } 
-    if(choice === 'paper' && choiceCPU[random] == 'scissors') {
+    if(choice === 'paper' && choiceCPU[random] === 'scissors') {
       setResult('YOU LOSE');
       setScore(score - 1);
     } 
@@ -101,7 +101,28 @@ function App() {
             <ChoiceBtn choice="rock" typeBtn='1' handleChoice={handleChoice}/>
           </section>
         ) : (
-          null
+          <section className="results">
+            <div className='picked'>
+              <h1>YOU PICKED</h1>
+              <ChoiceBtn choice={choice} typeBtn='2' />
+            </div>
+
+            { showResult && <div className='result'>
+              <h1>{result}</h1>
+              <button onClick={playAgain}>PLAY AGAIN</button>
+            </div>}
+
+            <div className='picked'>
+              <h1>YOU HOUSE PICKED</h1>
+              { num > 0 ? (
+                <div className='count-down'>
+                  <span>{num}</span>
+                </div>
+              ) : (
+                <ChoiceBtn choice={choiceCPU} typeBtn='2' />
+              )}
+            </div>
+          </section>
         )}
 
       </main>

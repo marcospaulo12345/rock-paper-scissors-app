@@ -78,10 +78,15 @@ body {
   justify-content: center;
 }
 
+
+.container .play button:first-child {
+  margin-right: auto !important;
+}
+
 .container .results {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin-top: 64px;
 }
@@ -104,6 +109,7 @@ body {
   margin-bottom: 64px;
   color: #fff;
   letter-spacing: 3px;
+  text-align: center;
 }
 
 .container .results .result {
@@ -160,6 +166,62 @@ body {
   color: var(--dark-text) !important;
 }
 
+@media (max-width: 900px) {
+  .container {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .container header{
+    width: 85%;
+  }  
+
+  .results {
+    width: 90vw !important;
+  }
+
+  .container .results .result {
+    width: 200px;
+  }
+
+  .container .results .result h1{
+    font-size: 34px;
+  }
+
+  .container .results .result button {
+    width: 142px;
+  }
+
+  .container .results .picked h1 {
+    margin-bottom: 64px;
+    color: #fff;
+    letter-spacing: 3px;
+  }
+}
+
+@media (max-width: 615px) and (min-width: 376px) {
+  .container header{
+    width: 85%;
+    height: 120px;
+  }
+
+  .result {
+    position: absolute;
+    margin-bottom: -180px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
+
+  .results .picked h1 {
+    font-size: 22px;
+    letter-spacing: 2px !important;
+    margin-bottom: 22px !important;
+    margin-top: -44px !important;
+  }
+}
+
 @media (max-width: 375px) {
   .container {
     width: 100vw;
@@ -205,4 +267,47 @@ body {
     font-size: 16px;
     padding: 12px 32px;
   }
+
+
+  .results {
+    width: 90vw !important;
+  }
+
+  .result {
+    position: absolute;
+    margin-bottom: -180px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
+
+  .container .results .picked {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column-reverse;
+  }
+
+  .container .results .picked:first-child {
+    margin-right: 0px;
+  }
+  
+  .container .results .picked:last-child {
+    margin-left: 0px;
+  }
+
+  .results .picked h1 {
+    font-size: 16px;
+    letter-spacing: 1px !important;
+    margin-bottom: 0px;
+    margin-top: 22px;
+  }
+
+  .count-down {
+    width: 126px;
+    height: 126px;
+    margin: 0px;
+  }
+
 }

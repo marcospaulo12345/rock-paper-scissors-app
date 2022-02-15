@@ -57,7 +57,6 @@ button {
 button[data-choice="paper"] {
     background: linear-gradient(to bottom, var(--paper-btn-bg), var(--paper-btn-bg-to));
     box-shadow: 0 0.5rem var(--shadow-med), 0 6px var(--paper-btn-bg-to);
-    margin-right: auto;
 }
 
 button[data-choice="scissors"] {
@@ -70,6 +69,23 @@ button[data-choice="rock"] {
     box-shadow: 0 0.5rem var(--shadow-med), 0 6px var(--rock-btn-bg-to);
 }
 
+@media (max-width: 900px) {
+    .result-btn {
+        width: 186px;
+        height: 186px;
+    }
+
+    .result-btn div {
+        width: 136px;
+        height: 136px;
+    }
+
+    .result-btn div img{
+        width: 65px;
+        height: 65px;
+    }
+}
+
 @media (max-width: 375px) {
     .choice-btn{
         width: 126px;
@@ -78,5 +94,20 @@ button[data-choice="rock"] {
     .choice {
         width: 96px;
         height: 96px;
+    }
+
+    .result-btn {
+        width: 126px;
+        height: 126px;
+    }
+
+    .result-btn div {
+        width: 96px;
+        height: 96px;
+    }
+
+    .result-btn div img{
+        width: 45px;
+        height: 45px;
     }
 }
